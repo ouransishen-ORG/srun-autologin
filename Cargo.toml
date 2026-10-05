@@ -1,0 +1,45 @@
+[package]
+name = "srun"
+version = "0.8.12"
+authors = ["偶然死神 <180318195+ouransishen@users.noreply.github.com>", "ouransishen-agent <336650464+ouransishen-agent@users.noreply.github.com>", "zu1k <i@zu1k.com>"]
+edition = "2024"
+description = "Srun (深澜) campus network auto-login toolkit with a cross-platform web panel"
+readme = "README.md"
+repository = "https://github.com/ouransishen-ORG/srun-autologin"
+license = "GPL-3.0"
+build = "build.rs"
+
+
+[profile.release]
+strip = true
+lto = true
+opt-level = "z"
+codegen-units = 1
+panic = "abort"
+
+
+[dependencies]
+base64 = "0.22"
+getopts = "0.2"
+hmac = "0.12"
+if-addrs = "0.13"
+lazy_static = "1.4"
+md-5 = "0.10"
+quick-error = "2.0"
+reqwest = { version = "0.12", default-features = false, features = ["blocking"], optional = true }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sha-1 = "0.10"
+ureq = { git = "https://github.com/zu1k/ureq.git", branch = "srun", default-features = false, optional = true }
+socket2 = "0.5"
+
+[features]
+default = ["ureq", "tls"]
+tls = ["ureq-rust-tls"]
+
+# ureq
+ureq-rust-tls = ["ureq", "ureq/tls"]
+ureq-native-tls = ["ureq", "ureq/native-tls"]
+# reqwest
+reqwest-rust-tls = ["reqwest", "reqwest/rustls-tls"]
+reqwest-native-tls = ["reqwest", "reqwest/default-tls"]

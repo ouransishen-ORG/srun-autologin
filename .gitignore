@@ -1,0 +1,12 @@
+/target
+/bin
+/Packet.lib
+/config_test.json
+/.vscode
+/build/release/*.exe
+/build/win-installer-stage/srun.exe
+/config.json
+/srun-web.log
+/.cargo-home/
+/.local-share/
+/.tmp/
